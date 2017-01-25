@@ -3,10 +3,20 @@
   <display-name>ApValidaLogin</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
-    <welcome-file>index.htm</welcome-file>
-    <welcome-file>index.jsp</welcome-file>
-    <welcome-file>default.html</welcome-file>
-    <welcome-file>default.htm</welcome-file>
-    <welcome-file>default.jsp</welcome-file>
+    
   </welcome-file-list>
+  <context-param>
+ <param-name>datasource</param-name>
+ <param-value>java:jboss/datasources/logins</param-value>
+ </context-param>
+  <servlet>
+    <description>Servlet apValidaLogin</description>
+    <display-name>ValidaLogin</display-name>
+    <servlet-name>ValidaLogin</servlet-name>
+    <servlet-class>validalogin.ValidaLogin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidaLogin</servlet-name>
+    <url-pattern>/validalogin</url-pattern>
+  </servlet-mapping>
 </web-app>
