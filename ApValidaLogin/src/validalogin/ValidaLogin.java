@@ -42,12 +42,15 @@ public class ValidaLogin extends HttpServlet{
 	}
 	
 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
+		
+	String vista="";
+	
+	try {
 			this.beanDao.getConnection();
 		
 		if (this.beanDao.consultaDatos(request, response)){
 			
-			String vista="WEB-INF/respuesta.jsp";
+			 vista="WEB-INF/respuesta.jsp";
 	    
 	      request.setAttribute("modelo",this.beanDao.getModelo());
 	      this.beanDao.close();
@@ -58,7 +61,12 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 	    else
 	    {
+	    vista="WEB-INF/error.jsp";	
+	    request.setAttribute("error",this.beanDao.getError());	
 	    this.beanDao.close();	
+	    RequestDispatcher rd = request.getRequestDispatcher(vista); 
+	      rd.forward(request, response);
+	    
 	    }
 		} catch (SQLException e) {
 			System.out.println("Error en la conexion a bd.Metodo doPost()");
